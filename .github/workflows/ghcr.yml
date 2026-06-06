@@ -19,7 +19,7 @@ jobs:
       - name: login to container registry
         run:  docker login -u ${{github.actor}} -p ${{github.token}} ghcr.io
       - name: build image
-        run:  docker build -t ghcr.io/felixhp05/docker-test:latest ${{ github.workspace }}
+        run:  docker build -t ghcr.io/felixhp05/docker-test:${{ github.sha }} ${{ github.workspace }}
       - name: push image
         run:  docker push ghcr.io/felixhp05/docker-test:latest
     
