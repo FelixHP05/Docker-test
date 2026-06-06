@@ -1,8 +1,8 @@
 FROM node:22
 
 ## add source
-WORKDIR .
-COPY --exclude=.env . .
+WORKDIR /koolDir
+COPY . .
 
 ## build
 ENV SKIP_ENV_VALIDATION="true"

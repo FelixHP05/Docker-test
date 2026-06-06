@@ -1,0 +1,14 @@
+name: GitHub Actions Demo
+run-name: Push to GHCR
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v6   
+      - name: build image
+        run:  docker build -t ghcr.io/felixhp05/docker-test:latest ${{ github.workspace }}
+      - name: push image
+        run:  docker push ghcr.io/felixhp05/docker-test:latest
+    
