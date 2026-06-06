@@ -17,9 +17,9 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v6   
       - name: login to container registry
-        run:  docker login -u ${{github.actor}} -p ${{github.token}} ghcr.io
+        run:  docker login -u ${{github.actor}} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
       - name: build image
-        run:  docker build -t ghcr.io/felixhp05/docker-test:${{ github.sha }} ${{ github.workspace }}
+        run:  docker build -t ghcr.io/felixhp05/docker-test:latest ${{ github.workspace }}
       - name: push image
         run:  docker push ghcr.io/felixhp05/docker-test:latest
     
