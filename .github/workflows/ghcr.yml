@@ -23,9 +23,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: build image
-        run:  docker build -t ghcr.io/felixhp05/docker-test:latest ${{ github.workspace }}
+        run:  docker build -t ghcr.io/felixhp05/tmp-test:latest ${{ github.workspace }}
       - name: push image
-        run:  docker push ghcr.io/felixhp05/docker-test:latest
+        run:  docker push ghcr.io/felixhp05/tmp-test:latest
     
 
 
