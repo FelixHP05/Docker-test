@@ -16,8 +16,12 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v6   
-      - name: login to container registry
-        run:  docker login -u ${{github.actor}} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: build image
         run:  docker build -t ghcr.io/felixhp05/docker-test:latest ${{ github.workspace }}
       - name: push image
