@@ -1,14 +1,33 @@
-name: GitHub Actions Demo
-run-name: Push to GHCR
+name: Push to GHCR
+run-name: Pushing image to github container registry
+
+# specifies permissions for the `secrets.GITHUB_TOKEN` token
+permissions:
+    contents: read
+    packages: write
+
+# trigger
 on: [push]
+
 jobs:
-  Explore-GitHub-Actions:
+  build:
     runs-on: ubuntu-latest
+
     steps:
       - name: checkout repository
         uses: actions/checkout@v6   
+      - name: login to container registry
+        run:  docker login -u ${{github.actor}} -p ${{github.token}} ghcr.io
       - name: build image
         run:  docker build -t ghcr.io/felixhp05/docker-test:latest ${{ github.workspace }}
       - name: push image
         run:  docker push ghcr.io/felixhp05/docker-test:latest
     
+
+
+# ********** ********** **********
+#
+# for reference on ${​{contexts}​}, see
+# https://docs.github.com/en/actions/reference/workflows-and-actions/contexts
+#
+# ********** ********** **********
